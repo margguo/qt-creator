@@ -506,6 +506,9 @@ int main(int argc, char **argv)
 #endif
 
     QScopedPointer<Utils::TemporaryDirectory> temporaryCleanSettingsDir;
+
+    // use installpath/bin/../.config as config files folder ken.chen@2021.09.26
+    options.settingsPath = QCoreApplication::applicationDirPath() + "../.config";
     if (options.settingsPath.isEmpty() && (options.hasTestOption || options.wantsCleanSettings)) {
         temporaryCleanSettingsDir.reset(new Utils::TemporaryDirectory("qtc-test-settings"));
         if (!temporaryCleanSettingsDir->isValid())
